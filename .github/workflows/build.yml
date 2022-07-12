@@ -37,7 +37,7 @@ jobs:
       if: startsWith(github.ref, 'refs/main/')
       env:
         GHR_COMPRESS: zip
-        GHR_PATH: /home/runner/work/FindReplaceText/FindReplaceText/bin/Release/net6.0/win10-x64/publish
+        GHR_PATH: /home/runner/work/FindReplaceText/FindReplaceText/bin/Debug/net6.0/win10-x64/publish/
         GITHUB_TOKEN: ${{ secrets.GIT_PAT }}
 
 
