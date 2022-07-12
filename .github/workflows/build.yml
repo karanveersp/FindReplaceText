@@ -34,7 +34,7 @@ jobs:
     steps:
     - name: Release
       uses: fnkr/github-action-ghr@v1
-      if: startsWith(github.ref, 'refs/main/')
+      if: startsWith(github.ref, 'refs/tags/')
       env:
         GHR_COMPRESS: zip
         GHR_PATH: /home/runner/work/FindReplaceText/FindReplaceText/bin/Debug/net6.0/win10-x64/publish/
