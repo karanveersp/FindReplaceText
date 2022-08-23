@@ -2,7 +2,11 @@ module FindReplace
 
 open System.Text.RegularExpressions
 
-let replace_text (pattern: string) (replacement: string) (content: string) : (string * string) option =
+/// Matches the pattern in content string, and performs runs a pair option
+/// where the first element is the fist capture group match in the content
+/// and the second element is the entire content with the captured text replaced
+/// with replacement text.
+let replaceText (pattern: string) (replacement: string) (content: string) : (string * string) option =
     let rx = new Regex(pattern)
 
     let rxMatch = rx.Match(content)
@@ -19,7 +23,7 @@ module Tests =
 
     [<Test>]
     let ``Replaces content with conversation`` () =
-        let result = replace_text @"(tent)" "versation" "my content"
+        let result = replaceText @"(tent)" "versation" "my content"
         Assert.True(result.IsSome)
         let (matchedString, replacement) = result.Value
         Assert.AreEqual("tent", matchedString)
@@ -28,5 +32,5 @@ module Tests =
 
     [<Test>]
     let ``Returns None when no matches`` () =
-        let result = replace_text @"(wontmatch)" "replacementText" "my content"
+        let result = replaceText @"(wontmatch)" "replacementText" "my content"
         Assert.True(result.IsNone)

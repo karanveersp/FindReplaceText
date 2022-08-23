@@ -67,7 +67,7 @@ let main argv =
 
         matchingFiles
         |> Seq.map (fun fp -> (fp, File.ReadAllText(fp)))
-        |> Seq.map (fun (fp, text) -> (fp, replace_text textPattern replacement text))
+        |> Seq.map (fun (fp, text) -> (fp, replaceText textPattern replacement text))
         |> Seq.filter (fun (_, updateOption) -> updateOption.IsSome)
         |> Seq.iter (fun (fp, updateOption: (string * string) option) ->
             let (matchedText, update) = updateOption.Value
